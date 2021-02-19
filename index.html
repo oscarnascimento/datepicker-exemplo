@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>DatePicker Exemplo</title>
+
+	<link rel="stylesheet" href="http://code.jquery.com/ui/1.9.0/themes/base/jquery-ui.css" />
+	<script src="http://code.jquery.com/jquery-1.8.2.js"></script>
+	<script src="http://code.jquery.com/ui/1.9.0/jquery-ui.js"></script>
+
+</head>
+<body>
+
+<p>Data: <input type="text" id="calendario" /></p>
+
+<form action="" id="formulario">
+	<input type="hidden" name="dia" id="campo-dia">
+	<input type="hidden" name="mes" id="campo-mes">
+	<input type="hidden" name="ano" id="campo-ano">
+</form>
+
+
+<script>
+    $(function() {
+        $( "#calendario" ).datepicker({
+            changeMonth: true,
+            changeYear: true,
+            dateFormat: 'dd/mm/yy',
+            dayNames: ['Domingo','Segunda','Terça','Quarta','Quinta','Sexta','Sábado','Domingo'],
+            dayNamesMin: ['D','S','T','Q','Q','S','S','D'],
+            dayNamesShort: ['Dom','Seg','Ter','Qua','Qui','Sex','Sáb','Dom'],
+            monthNames: ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'],
+            monthNamesShort: ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'],
+	        onSelect: function (dataSelecionada) {
+                console.log('dataSelecionada:', dataSelecionada)
+                // a data selecionada está no formato dd/mm/yyyy
+                var dataSplit = dataSelecionada.split('/')
+
+		        // Pegando cada informação da data selecionada
+		        var dia = dataSplit[0];
+                var mes = dataSplit[1];
+                var ano = dataSplit[2];
+
+
+                // Pegando os campos hidden para manipulá-los
+                var campoHiddenDia = $('#campo-dia')
+                var campoHiddenMes = $('#campo-mes')
+                var campoHiddenAno = $('#campo-ano')
+
+                // Setando valores nos campos hidden
+                campoHiddenDia.val(dia)
+                campoHiddenMes.val(mes)
+                campoHiddenAno.val(ano)
+
+		        console.log('dia: ', campoHiddenDia.val())
+                console.log('mes: ', campoHiddenMes.val())
+                console.log('ano: ', campoHiddenAno.val())
+
+
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
